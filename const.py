@@ -14,6 +14,6 @@ red_light_mode: dict = {
     'high': (65, 15, 0),
 }
 
-get_feature_command: str = "ddcutil --bus=7 getvcp {} | egrep -o 'current value = *[0-9]{{,2}}' | awk '{{print $4}}'"
+get_feature_command: str = "ddcutil getvcp {} | egrep -o 'current value = *[0-9]{{,2}}' | awk '{{print $4}}'"
 
-set_feature_command: str = "ddcutil --bus=7 setvcp {} {}"
+set_feature_command: str = "ddcutil setvcp {} {}"

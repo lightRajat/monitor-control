@@ -267,10 +267,76 @@
             <property name="name">error_page</property>
             <property name="child">
 
-              <object class="GtkLabel">
-                <property name="label">No external monitor detected</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">16</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">No external monitor detected</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <property name="spacing">12</property>
+                    <property name="halign">center</property>
+
+                    <!-- Refresh button -->
+                    <child>
+                      <object class="GtkButton">
+                        <signal name="clicked" handler="on_refresh_button__clicked"></signal>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
+                            <property name="spacing">6</property>
+
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">view-refresh-symbolic</property>
+                              </object>
+                            </child>
+
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Refresh</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                    <!-- Close button -->
+                    <child>
+                      <object class="GtkButton">
+                        <signal name="clicked" handler="on_close_button__clicked"></signal>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">horizontal</property>
+                            <property name="spacing">6</property>
+
+                            <child>
+                              <object class="GtkImage">
+                                <property name="icon-name">window-close-symbolic</property>
+                              </object>
+                            </child>
+
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Close</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+
+                  </object>
+                </child>
               </object>
 
             </property>

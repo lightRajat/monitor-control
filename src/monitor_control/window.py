@@ -1,7 +1,7 @@
 import gi
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, GLib
-from monitor_control.const import UI_FILE_PATH, UPDATE_DELAY
+from monitor_control.const import UI_FILE_PATH, UPDATE_DELAY, CHECK_CONNECTION_INTERVAL
 from monitor_control import util
 
 @Gtk.Template(filename=UI_FILE_PATH)
@@ -25,6 +25,8 @@ class AppWindow(Gtk.ApplicationWindow):
         self.override = override
         self.feature_velocity = feature_velocity
         self.update_feature = update_feature
+
+        self.is_timer_set = False
 
         self.stack.set_visible_child_name("loading_page")
 
@@ -56,12 +58,24 @@ class AppWindow(Gtk.ApplicationWindow):
             
             self.init_main_page()
 
-            for feature in self.target_val.keys():
-                GLib.timeout_add(UPDATE_DELAY, self.update_feature, feature, self.target_val, self.current_val, self.override, self.feature_velocity)
+            if not self.is_timer_set:
+                for feature in self.target_val.keys():
+                    GLib.timeout_add(UPDATE_DELAY, self.update_feature, feature, self.target_val, self.current_val, self.override, self.feature_velocity, self.stack.get_visible_child_name())
+                
+                GLib.timeout_add_seconds(CHECK_CONNECTION_INTERVAL, self.check_connected)
+                self.is_timer_set = True
             
             self.stack.set_visible_child_name("main_page")
         else:
             self.stack.set_visible_child_name("error_page")
+    
+    def check_connected(self):
+        if self.stack.get_visible_child_name() != "main_page":
+            return True
+        success: bool = util.detect_monitor()
+        if not success:
+            self.stack.set_visible_child_name("error_page")
+        return True
     
     @Gtk.Template.Callback()
     def on_scale__value_changed(self, slider) -> None:

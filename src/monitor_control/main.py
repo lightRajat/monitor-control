@@ -6,7 +6,9 @@ from monitor_control import util
 from monitor_control.const import ACCELERATION
 
 
-def update_feature(feature: str, target_val: dict, current_val: dict, override: dict, feature_velocity: dict) -> None:
+def update_feature(feature: str, target_val: dict, current_val: dict, override: dict, feature_velocity: dict, visible_page: str) -> bool:
+    if visible_page != "main_page":
+        return True
     if current_val[feature] == target_val[feature]:
         feature_velocity[feature] = 0
         return True

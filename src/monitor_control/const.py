@@ -9,6 +9,7 @@ I2C_BUS: str = None
 UI_FILE_PATH: str = join(dirname(__file__), 'window.ui')
 UPDATE_DELAY = 50 # milliseconds
 ACCELERATION = 2 # steps
+CHECK_CONNECTION_INTERVAL = 3 # seconds
 
 def get_feature_cmd(feature: str) -> list[str]:
     cmd = ['ddccontrol', '-r', FEATURE_CODE[feature], f'dev:/dev/{I2C_BUS}']

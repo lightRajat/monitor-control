@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+
+  <template class="AppWindow" parent="GtkApplicationWindow">
+    <property name="title">Monitor Control</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">20</property>
+
+        <!-- window padding -->
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">30</property>
+        <property name="margin-start">30</property>
+        <property name="margin-end">30</property>
+
+        <!-- BRIGHTNESS -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">6</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Brightness: </property>
+                    <property name="css-classes">heading</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel" id="label_brightness">
+                    <property name="label">50</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">%</property>
+                  </object>
+                </child>
+                
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="spacing">12</property>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">display-brightness-symbolic</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkScale" id="scale_brightness">
+                    <property name="orientation">horizontal</property>
+                    <property name="hexpand">false</property>
+                    <property name="width-request">330</property>
+                    <property name="draw-value">false</property>
+
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">0</property>
+                        <property name="upper">100</property>
+                        <property name="step-increment">5</property>
+                        <property name="value">50</property>
+                      </object>
+                    </property>
+
+                    <signal name="value-changed" handler="on_scale__value_changed"></signal>
+                  </object>
+                </child>
+
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <!-- CONTRAST -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">6</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Contrast: </property>
+                    <property name="css-classes">heading</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel" id="label_contrast">
+                    <property name="label">50</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">%</property>
+                  </object>
+                </child>
+                
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="spacing">12</property>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">preferences-system-symbolic</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkScale" id="scale_contrast">
+                    <property name="orientation">horizontal</property>
+                    <property name="hexpand">false</property>
+                    <property name="width-request">330</property>
+                    <property name="draw-value">false</property>
+
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">0</property>
+                        <property name="upper">100</property>
+                        <property name="step-increment">5</property>
+                        <property name="value">50</property>
+                      </object>
+                    </property>
+
+                    <signal name="value-changed" handler="on_scale__value_changed"></signal>
+                  </object>
+                </child>
+
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <!-- VOLUME -->
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">6</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Volume: </property>
+                    <property name="css-classes">heading</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel" id="label_volume">
+                    <property name="label">50</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">%</property>
+                  </object>
+                </child>
+                
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="spacing">12</property>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="icon-name">audio-volume-high-symbolic</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkScale" id="scale_volume">
+                    <property name="orientation">horizontal</property>
+                    <property name="hexpand">false</property>
+                    <property name="width-request">330</property>
+                    <property name="draw-value">false</property>
+
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                        <property name="lower">0</property>
+                        <property name="upper">100</property>
+                        <property name="step-increment">5</property>
+                        <property name="value">50</property>
+                      </object>
+                    </property>
+
+                    <signal name="value-changed" handler="on_scale__value_changed"></signal>
+                  </object>
+                </child>
+
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>

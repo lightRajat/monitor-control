@@ -8,7 +8,13 @@ FEATURE_CODE: dict = {
 }
 I2C_BUS: str = i2c_bus.get()
 UI_FILE_PATH: str = join(dirname(__file__), 'window.ui')
+UPDATE_DELAY = 50 # milliseconds
+ACCELERATION = 2 # steps
 
 def get_feature_cmd(feature: str) -> list[str]:
     cmd = ['ddccontrol', '-r', FEATURE_CODE[feature], f'dev:/dev/{I2C_BUS}']
+    return cmd
+
+def set_feature_cmd(feature: str, value: int) -> str:
+    cmd = f'ddccontrol -r {FEATURE_CODE[feature]} -w {value} dev:/dev/{I2C_BUS}\n'
     return cmd

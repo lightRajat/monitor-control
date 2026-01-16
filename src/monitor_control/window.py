@@ -15,8 +15,13 @@ class AppWindow(Gtk.ApplicationWindow):
     scale_contrast = Gtk.Template.Child()
     scale_volume = Gtk.Template.Child()
 
-    def __init__(self, app, target_val: dict, override: dict) -> None:
+    stack = Gtk.Template.Child()
+
+    def __init__(self, app) -> None:
         super().__init__(application=app)
+        self.stack.set_visible_child_name("loading_page")
+
+    def init_main_page(self, target_val: dict, override: dict) -> None:
         self.target_val = target_val
         self.override = override
 
@@ -34,6 +39,8 @@ class AppWindow(Gtk.ApplicationWindow):
         self.label_volume.set_text(str(val))
         self.last_volume = val
         self.scale_volume.set_value(val)
+
+        self.stack.set_visible_child_name("main_page")
     
     @Gtk.Template.Callback()
     def on_scale__value_changed(self, slider) -> None:

@@ -26,27 +26,35 @@ def update_feature(feature: str, target_val: dict, current_val: dict, override: 
 
     return True
 
-def app__activate(app, target_val: dict, override: dict) -> None:
-    window = AppWindow(app, target_val=target_val, override=override)
+def app__open(window: Gtk.ApplicationWindow) -> None:
+    success = util.detect_monitor()
+    if success:
+        target_val: dict = {'brightness': None, 'contrast': None, 'volume': None}
+        current_val: dict = {'brightness': None, 'contrast': None, 'volume': None}
+        override: dict = {'brightness': False, 'contrast': False, 'volume': False}
+        feature_velocity: dict = {'brightness': 0, 'contrast': 0, 'volume': 0}
+
+        for feature in target_val.keys():
+            val = util.get_feature_value(feature)
+            target_val[feature] = current_val[feature] = val
+        
+        # initialize main gui page
+        window.init_main_page(target_val, override)
+
+        # feature update loop
+        for feature in target_val.keys():
+            GLib.timeout_add(UPDATE_DELAY, update_feature, feature, target_val, current_val, override, feature_velocity)
+    else:
+        window.stack.set_visible_child_name("error_page")
+
+def app__activate(app) -> None:
+    window = AppWindow(app)
     window.present()
+    GLib.idle_add(app__open, window)
 
 def main() -> None:
-    target_val: dict = {'brightness': None, 'contrast': None, 'volume': None}
-    current_val: dict = {'brightness': None, 'contrast': None, 'volume': None}
-    override: dict = {'brightness': False, 'contrast': False, 'volume': False}
-    feature_velocity: dict = {'brightness': 0, 'contrast': 0, 'volume': 0}
-
-    for feature in target_val.keys():
-        val = util.get_feature_value(feature)
-        target_val[feature] = current_val[feature] = val
-
-
     app = Gtk.Application(application_id="org.example.hello")
-    app.connect("activate", app__activate, target_val, override)
-
-    # feature update loop
-    for feature in target_val.keys():
-        GLib.timeout_add(UPDATE_DELAY, update_feature, feature, target_val, current_val, override, feature_velocity)
+    app.connect("activate", app__activate)
 
     # gui loop
     app.run(None)

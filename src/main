@@ -1,6 +1,19 @@
 #! /usr/bin/env python3
 
-from gddc.main import main
+import os
+import pwd
+import grp
+from gddc import main, error_window
 
 if __name__ == "__main__":
-    main()
+    uid = os.getuid()
+    user_info = pwd.getpwuid(uid)
+    username = user_info.pw_name
+    group_ids = os.getgrouplist(username, user_info.pw_gid)
+    group_names = [grp.getgrgid(gid).gr_name for gid in group_ids]
+
+    if 'i2c' in group_names:
+        main.main()
+    else:
+        print(f"This app needs i2c permissions to access '/dev/i2c-X' devices.\nPlease add your user to the 'i2c' group with the following command:\n\nsudo usermod -aG i2c $USER\n\nThen log out and log back in for the changes to take effect.")
+        error_window.main()

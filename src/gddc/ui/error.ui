@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+
+  <template class="ErrorWindow" parent="GtkWindow">
+    <property name="title">Permission Error</property>
+    <property name="default-width">450</property>
+    <property name="default-height">250</property>
+    <property name="modal">True</property>
+    <property name="resizable">False</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="spacing">16</property>
+        <property name="margin-top">20</property>
+        <property name="margin-bottom">20</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
+
+        <!-- info -->
+        <child>
+          <object class="GtkLabel">
+            <property name="label">This app needs i2c permissions to access &lt;tt&gt;/dev/i2c-X&lt;/tt&gt; devices. Please add your user to the &lt;tt&gt;i2c&lt;/tt&gt; group with the following command:</property>
+            <property name="use-markup">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+        <!-- command -->
+        <child>
+          <object class="GtkLabel">
+            <property name="label">sudo usermod -aG i2c $USER</property>
+            <property name="selectable">True</property>
+            <property name="xalign">0</property>
+            <property name="css-classes">monospace</property>
+            <property name="margin-top">4</property>
+            <property name="margin-bottom">4</property>
+          </object>
+        </child>
+
+        <!-- reboot info -->
+        <child>
+          <object class="GtkLabel">
+            <property name="label">Then log out and log back in for the changes to take effect.</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+
+        <!-- Close button -->
+        <child>
+          <object class="GtkButton" id="btn_close">
+            <property name="label">Close</property>
+            <property name="halign">center</property>
+            <signal name="clicked" handler="on_close__clicked" />
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>

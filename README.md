@@ -2,6 +2,28 @@
 
 **gddc** is a lightweight GTK 4 application to control **brightness**, **contrast**, and **volume** of external monitors on Linux using the **DDC/CI** protocol, built on top of the command-line tool [`ddccontrol`](https://github.com/ddccontrol/ddccontrol).
 
+## 📦 Installation Instructions
+
+### 1. Install the Application
+
+Run the following command to download and install the `.deb` package:
+
+```bash
+wget -qO /tmp/myapp.deb https://github.com/lightRajat/monitor-control/releases/download/v1.0-1/gddc_1.0-1_all.deb && sudo apt install /tmp/myapp.deb -y
+```
+
+### 2. Grant i2c Permissions
+
+Add your current user to the `i2c` group so the app can communicate with your monitor:
+
+```bash
+sudo usermod -aG i2c $USER
+```
+
+### 3. Apply Changes
+
+**Log out and log back in** (or restart your computer) for the permission changes to take effect.
+
 ## ✨ Features
 
 * Built with **GTK 4**
@@ -21,7 +43,7 @@ cd monitor-control
 ### Run locally
 
 ```bash
-src/gddc
+src/main
 ```
 
 ## 🐞 Contributions & Bug Reports

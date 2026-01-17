@@ -40,7 +40,7 @@ def app__activate(app) -> None:
     GLib.idle_add(window.refresh_app)
 
 def main() -> None:
-    app = Gtk.Application(application_id="org.example.hello")
+    app = Gtk.Application(application_id="monitor-control")
     app.connect("activate", app__activate)
 
     app.run(None)

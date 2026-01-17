@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Monitor Control
+Comment=Control settings of external monitor
+Exec=monitor-control
+Icon=monitor-control
+Terminal=false
+Categories=Utility;

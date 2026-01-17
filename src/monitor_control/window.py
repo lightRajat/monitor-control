@@ -1,7 +1,7 @@
 import gi
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, GLib
-from monitor_control.const import UI_FILE_PATH, UPDATE_DELAY, CHECK_CONNECTION_INTERVAL
+from monitor_control.const import UI_FILE_PATH, UPDATE_DELAY, CHECK_CONNECTION_INTERVAL, ABOUT_UI_FILE_PATH
 from monitor_control import util
 
 @Gtk.Template(filename=UI_FILE_PATH)
@@ -109,3 +109,16 @@ class AppWindow(Gtk.ApplicationWindow):
     @Gtk.Template.Callback()
     def on_refresh_button__clicked(self, button) -> None:
         self.refresh_app()
+    
+    @Gtk.Template.Callback()
+    def on_info_clicked(self, button):
+        builder = Gtk.Builder.new_from_file(ABOUT_UI_FILE_PATH)
+
+        close_btn = builder.get_object("close_button")
+        close_btn.connect("clicked", lambda e: close_btn.get_root().close())
+
+        about_win = builder.get_object("about_window")
+        about_win.set_transient_for(self)
+        about_win.set_modal(True)
+
+        about_win.present()

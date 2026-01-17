@@ -6,7 +6,8 @@ FEATURE_CODE: dict = {
     'volume': '0x62',
 }
 I2C_BUS: str = None
-UI_FILE_PATH: str = join(dirname(__file__), 'window.ui')
+UI_FILE_PATH: str = join(dirname(__file__), 'ui', 'window.ui')
+ABOUT_UI_FILE_PATH: str = join(dirname(__file__), 'ui', 'about.ui')
 UPDATE_DELAY = 50 # milliseconds
 ACCELERATION = 2 # steps
 CHECK_CONNECTION_INTERVAL = 3 # seconds

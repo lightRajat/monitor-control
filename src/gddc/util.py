@@ -1,5 +1,5 @@
-from monitor_control import const
-from monitor_control import i2c_bus
+from gddc import const
+from gddc import i2c_bus
 import subprocess
 
 proc = subprocess.Popen(['/bin/bash'], stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, text=True)

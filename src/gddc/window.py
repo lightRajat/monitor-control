@@ -1,8 +1,8 @@
 import gi
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, GLib
-from monitor_control.const import UI_FILE_PATH, UPDATE_DELAY, CHECK_CONNECTION_INTERVAL, ABOUT_UI_FILE_PATH
-from monitor_control import util
+from gddc.const import UI_FILE_PATH, UPDATE_DELAY, CHECK_CONNECTION_INTERVAL, ABOUT_UI_FILE_PATH
+from gddc import util
 
 @Gtk.Template(filename=UI_FILE_PATH)
 class AppWindow(Gtk.ApplicationWindow):
@@ -20,7 +20,7 @@ class AppWindow(Gtk.ApplicationWindow):
 
     def __init__(self, app, current_val: dict, target_val: dict, override: dict, feature_velocity: dict, update_feature) -> None:
         super().__init__(application=app)
-        self.set_icon_name("monitor-control")
+        self.set_icon_name("gddc")
 
         self.current_val = current_val
         self.target_val = target_val

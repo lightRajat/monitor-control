@@ -1,9 +1,9 @@
 import gi
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, GLib
-from monitor_control.window import AppWindow
-from monitor_control import util
-from monitor_control.const import ACCELERATION
+from gddc.window import AppWindow
+from gddc import util
+from gddc.const import ACCELERATION
 
 
 def update_feature(feature: str, target_val: dict, current_val: dict, override: dict, feature_velocity: dict, visible_page: str) -> bool:
@@ -40,7 +40,7 @@ def app__activate(app) -> None:
     GLib.idle_add(window.refresh_app)
 
 def main() -> None:
-    app = Gtk.Application(application_id="monitor-control")
+    app = Gtk.Application(application_id="io.github.lightRajat.gddc")
     app.connect("activate", app__activate)
 
     app.run(None)

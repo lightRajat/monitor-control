@@ -2,7 +2,7 @@
 Type=Application
 Name=Monitor Control
 Comment=Control settings of external monitor
-Exec=monitor-control
-Icon=monitor-control
+Exec=gddc
+Icon=gddc
 Terminal=false
 Categories=Utility;

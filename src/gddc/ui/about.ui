@@ -19,7 +19,7 @@
         <!-- App title -->
         <child>
           <object class="GtkLabel">
-            <property name="label">Monitor Control</property>
+            <property name="label">GDDC (Monitor Control)</property>
             <property name="css-classes">title-1</property>
             <property name="halign">center</property>
           </object>

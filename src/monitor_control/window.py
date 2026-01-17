@@ -20,6 +20,8 @@ class AppWindow(Gtk.ApplicationWindow):
 
     def __init__(self, app, current_val: dict, target_val: dict, override: dict, feature_velocity: dict, update_feature) -> None:
         super().__init__(application=app)
+        self.set_icon_name("monitor-control")
+
         self.current_val = current_val
         self.target_val = target_val
         self.override = override

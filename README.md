@@ -24,6 +24,13 @@ sudo usermod -aG i2c $USER
 
 **Log out and log back in** (or restart your computer) for the permission changes to take effect.
 
+## 🧩 Compatibility
+
+* **Target OS:** Designed for **Debian-based Linux distributions** (Ubuntu, Linux Mint, Pop!_OS, Kali, etc.) using the `apt` package manager.
+* **Desktop Environment:** Requires support for **GTK 4** libraries (`gir1.2-gtk-4.0`).
+* **Kernel:** Relies on a standard Linux kernel with the `i2c-dev` module enabled for hardware communication.
+* **Unsupported Platforms:** Not compatible with Windows (including WSL), macOS, or non-Debian Linux distros (Arch, Fedora, RPM-based) without manual adaptation.
+
 ## ✨ Features
 
 * Built with **GTK 4**

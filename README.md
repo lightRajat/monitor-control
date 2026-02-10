@@ -2,6 +2,10 @@
 
 **gddc** is a lightweight GTK 4 application to control **brightness**, **contrast**, and **volume** of external monitors on Linux using the **DDC/CI** protocol, built on top of the command-line tool [`ddccontrol`](https://github.com/ddccontrol/ddccontrol).
 
+## Preview
+
+<video src="https://github.com/user-attachments/assets/2f964fe6-c302-4f34-b213-06dcf82bdb82" controls title="GUI Preview"></video>
+
 ## 📦 Installation Instructions
 
 ### 1. Install the Application
